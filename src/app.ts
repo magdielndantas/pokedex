@@ -19,7 +19,7 @@ const getPokemon = async (id: number): Promise<void> => {
   const pokemon: any = await data.json();
   const pokemonType: string = pokemon.types
     .map((poke: any) => poke.type.name)
-    .join(", ");
+    .join("</span><span>");
 
   const transformedPokemon = {
     id: pokemon.id,
@@ -27,20 +27,24 @@ const getPokemon = async (id: number): Promise<void> => {
     image: `${pokemon.sprites.front_default}`,
     type: pokemonType
   };
-
   showPokemon(transformedPokemon);
 };
 
 const showPokemon = (pokemon: IPokemon): void => {
+  const html = document.querySelector("html")
+
+
+
   let output: string = `
         <div class="card">
             <span class="card--id">#${pokemon.id}</span>
             <img class="card--image" src=${pokemon.image} alt=${pokemon.name} />
             <h1 class="card--name">${pokemon.name}</h1>
-            <span class="card--details">${pokemon.type}</span>
+            <p class="card--details"><span id='primaryPokeType'>${pokemon.type}</span></p>
         </div>
     `;
   container.innerHTML += output;
 };
+
 
 fetchData();

@@ -54,7 +54,7 @@ var getPokemon = function (id) { return __awaiter(void 0, void 0, void 0, functi
                 pokemon = _a.sent();
                 pokemonType = pokemon.types
                     .map(function (poke) { return poke.type.name; })
-                    .join(", ");
+                    .join("</span><span>");
                 transformedPokemon = {
                     id: pokemon.id,
                     name: pokemon.name,
@@ -67,7 +67,8 @@ var getPokemon = function (id) { return __awaiter(void 0, void 0, void 0, functi
     });
 }); };
 var showPokemon = function (pokemon) {
-    var output = "\n        <div class=\"card\">\n            <span class=\"card--id\">#" + pokemon.id + "</span>\n            <img class=\"card--image\" src=" + pokemon.image + " alt=" + pokemon.name + " />\n            <h1 class=\"card--name\">" + pokemon.name + "</h1>\n            <span class=\"card--details\">" + pokemon.type + "</span>\n        </div>\n    ";
+    var html = document.querySelector("html");
+    var output = "\n        <div class=\"card\">\n            <span class=\"card--id\">#" + pokemon.id + "</span>\n            <img class=\"card--image\" src=" + pokemon.image + " alt=" + pokemon.name + " />\n            <h1 class=\"card--name\">" + pokemon.name + "</h1>\n            <p class=\"card--details\"><span id='primaryPokeType'>" + pokemon.type + "</span></p>\n        </div>\n    ";
     container.innerHTML += output;
 };
 fetchData();

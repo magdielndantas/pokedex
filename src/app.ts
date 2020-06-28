@@ -11,6 +11,7 @@ interface IPokemon {
 const fetchData = (): void => {
   for (let i = 1; i <= pokemons; i++) {
     getPokemon(i);
+    
   }
 };
 
@@ -30,11 +31,19 @@ const getPokemon = async (id: number): Promise<void> => {
   showPokemon(transformedPokemon);
 };
 
+function changeBackgroundCard(){
+  const cards = document.querySelectorAll('div.card')
+  const primaryPokeType = document.querySelectorAll('span#primaryPokeType')
+
+  for (let i = 0; i < primaryPokeType.length; i++){
+    const colorName = primaryPokeType[i].innerHTML
+    const card = cards[i]
+
+    card.classList.add(colorName)
+  }
+}
+
 const showPokemon = (pokemon: IPokemon): void => {
-  const html = document.querySelector("html")
-
-
-
   let output: string = `
         <div class="card">
             <span class="card--id">#${pokemon.id}</span>
@@ -44,6 +53,7 @@ const showPokemon = (pokemon: IPokemon): void => {
         </div>
     `;
   container.innerHTML += output;
+  changeBackgroundCard()
 };
 
 

@@ -42,15 +42,6 @@ var fetchData = function () {
         getPokemon(i);
     }
 };
-function changeBackgroundCard() {
-    var cards = document.querySelectorAll('div.card');
-    var primaryPokeType = document.querySelectorAll('span#primaryPokeType');
-    for (var i = 0; i < primaryPokeType.length; i++) {
-        var colorName = primaryPokeType[i].innerHTML;
-        var card = cards[i];
-        card.classList.add(colorName);
-    }
-}
 var getPokemon = function (id) { return __awaiter(void 0, void 0, void 0, function () {
     var data, pokemon, pokemonType, transformedPokemon;
     return __generator(this, function (_a) {
@@ -75,6 +66,15 @@ var getPokemon = function (id) { return __awaiter(void 0, void 0, void 0, functi
         }
     });
 }); };
+function changeBackgroundCard() {
+    var cards = document.querySelectorAll('div.card');
+    var primaryPokeType = document.querySelectorAll('span#primaryPokeType');
+    for (var i = 0; i < primaryPokeType.length; i++) {
+        var colorName = primaryPokeType[i].innerHTML;
+        var card = cards[i];
+        card.classList.add(colorName);
+    }
+}
 var showPokemon = function (pokemon) {
     var output = "\n        <div class=\"card\">\n            <span class=\"card--id\">#" + pokemon.id + "</span>\n            <img class=\"card--image\" src=" + pokemon.image + " alt=" + pokemon.name + " />\n            <h1 class=\"card--name\">" + pokemon.name + "</h1>\n            <p class=\"card--details\"><span id='primaryPokeType'>" + pokemon.type + "</span></p>\n        </div>\n    ";
     container.innerHTML += output;

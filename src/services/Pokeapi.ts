@@ -14,9 +14,13 @@ export const getIdFromUrl = (url: any) => {
    return matches && matches[1] ? matches[1] : null;
 }
 
-export const getPokemonImage = (id: any) =>{
-    const pokemon = doGet(id)
-    //let image = pokemon.sprites.front_default
+export const getPokemonTypes = async(id: any) =>{
+    const data = await doGet(id)
+    let types: string = data.types
+      .map((poke: any) => poke.type.name)
+      .join(", ");
 
-    return console.log(pokemon)
+    const aa = types
+
+    return aa
 }

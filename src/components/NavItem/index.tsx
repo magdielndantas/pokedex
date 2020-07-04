@@ -1,14 +1,14 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+import { Container } from './styles'
 
-import {Container} from './styles'
-
-export interface Props{
-    name: any,
+export interface Props {
+    name: string,
     id: any,
-    image: any,
-    types: any,
+    image: string,
+    types: string,
 }
-  
+
 const NavItem: React.FC<Props> = ({
     name,
     id,
@@ -17,13 +17,15 @@ const NavItem: React.FC<Props> = ({
 }) => {
 
     return (
-        <Container>
-            <img src={image} alt={name}/>
-            <div>
-                <h1>{name}</h1>
-                <p>#{id} • {types}</p>
-            </div>
-        </Container> 
+        <Link to={`/pokemon/${name}`}> 
+            <Container>
+                <img src={image} alt={name} />
+                <div>
+                    <h1>{name}</h1>
+                    <p>#{id} • {types}</p>
+                </div>
+            </Container>
+        </Link>
     )
 }
 

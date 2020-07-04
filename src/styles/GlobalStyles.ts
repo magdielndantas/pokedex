@@ -1,8 +1,8 @@
-import {createGlobalStyle} from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
     :root {
-        --bg-primary: #F4F7FA;
+        --bg-primary: #FAFBFD;
         --bg-secondary: #ffffff;
         --grass: #9bcc50;
         --fire: #ff9441;
@@ -18,22 +18,31 @@ export default createGlobalStyle`
         --fairy: #fdb9e9;
         --psychic: #f366b9;
         --fighting: #d56723;
+
+        --light-blue: #F3F8FE;
+        --dark-blue: #24416A;
+        --gray: #B3BCCA;
+
+
+        --primary: #36393f;
+        --secondary: #2f3136;
+        --tertiary: rgb(32,34,37);
     }
 
-    .grass:hover{background-color: var(--grass)!important;color: #ffffff;}
-    .fire:hover{background-color: var(--fire)!important;color: #ffffff;}
-    .water:hover{background-color: var(--water)!important;color: #ffffff;}
-    .bug:hover{background-color: var(--bug)!important;color: #ffffff;}
-    .rock:hover{background-color: var(--rock)!important;color: #ffffff;}
-    .normal:hover{background-color: var(--normal)!important;color: #ffffff;}
-    .poison:hover{background-color: var(--poison)!important;color: #ffffff;}
-    .ghost:hover{background-color: var(--ghost)!important;color: #ffffff;}
-    .dark:hover{background-color: var(--dark) !important;color: #ffffff;}
-    .electric:hover{background-color: var(--electric)!important;color: #ffffff;}
-    .ground:hover{background-color: var(--ground)!important;color: #ffffff;}
-    .fairy:hover{background-color: var(--fairy)!important;color: #ffffff;}
-    .psychic:hover{background-color: var(--psychic)!important;color: #ffffff;}
-    .fighting:hover{background-color: var(--fighting)!important;color: #ffffff;}
+    .grass{color: var(--grass) !important;}
+    .fire{color: var(--fire) !important;}
+    .water{color: var(--water) !important;}
+    .bug{color: var(--bug) !important;}
+    .rock{color: var(--rock) !important;}
+    .normal{color: var(--normal) !important;}
+    .poison{color: var(--poison) !important;}
+    .ghost{color: var(--ghost) !important;}
+    .dark{color: var(--dark) !important;}
+    .electric{color: var(--electric) !important;}
+    .ground{color: var(--ground) !important;}
+    .fairy{color: var(--fairy) !important;}
+    .psychic{color: var(--psychic) !important;}
+    .fighting{color: var(--fighting) !important;}
 
     *{
         margin: 0;
@@ -50,5 +59,9 @@ export default createGlobalStyle`
         outline: 0;
 
         font-family: 'Roboto', sans-serif
+    }
+
+    a{
+        text-decoration: none;
     }
 `;

@@ -1,52 +1,46 @@
 import React, { useState, useEffect } from 'react'
-import { doGet, getIdFromUrl} from '../../services/Pokeapi';
+import { Container } from './styles'
+import NavItem from '../NavItem'
 
-import {Container} from './styles'
-import  NavItem from '../NavItem'
+const Nav: React.FC = () => {
+  const [pokemon, setPokemon] = useState([])
 
+  useEffect(() => {
+    fetchData()
+  }, [])
 
-const Nav: React.FC = () =>{
-  const [pokemon, setPokemon]: any = useState([])
+  const fetchData = (): void => {
+    for (let i = 1; i <= 20; i++) {
+      getPokemon(i)
+    }
+  }
 
-  useEffect(()=> { 
-    async function getData(){
-      let data = await doGet('')
-      setPokemon(data.results)
+  const getPokemon = async (id: number): Promise<void> => {
+    const data: Response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    const pokemon: any = await data.json()
+    /*const pokemonType: string = pokemon.types
+      .map((poke: any) => poke.type.name)
+      .join(`, `)*/
+
+    const pokemonObject = {
+      id: pokemon.id,
+      name: pokemon.name,
+      image: `${pokemon.sprites.front_default}`,
+      types: pokemon.types,
     }
 
-    getData()
+    setPokemon(pokemon => [...pokemon, pokemonObject])
+  }
 
-    getPokemon(1)
-  }, [])
- 
- const [dataPokemon, setDataPokemon] = useState([])
-
- async function getPokemon(i){
-      let data = await doGet(i)
-      const pokeType: string = data.types
-      .map((poke: any) => poke.type.name)
-      .join(", ");
-
-      const poke = {
-        id: data.id,
-        name: data.name,
-        image: `${data.sprites.front_default}`,
-        type: pokeType
-        };
-      
-    setDataPokemon(dataPokemon=> [...dataPokemon, poke])
-}
-
-
-  return(
+  return (
     <Container>
-      {pokemon.length > 0 ?dataPokemon.map((p: any)=>(
-          <NavItem key={p.id} name={p.name} id={p.id} image={p.image} types={p.type}/>
-      )) : <span>...</span>}  
-
-      {pokemon.length > 0 ?pokemon.map((poke: any)=>(
-          <NavItem key={poke.name} name={poke.name} id={getIdFromUrl(poke.url)} image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getIdFromUrl(poke.url)}.png`} types="Teste, Teste"/>
-      )) : <span>...</span>}  
+      <div className="gradient"></div>
+      
+      {pokemon.length  > 0 ? pokemon.map((p: any) => (
+          <NavItem key={p.id}  name={p.name} id={p.id} image={p.image} types={p.types.map((t: any) => (
+            <span key={t.id} className={t.type.name}>{t.type.name} </span>
+          ))} />
+      )) : <span>...</span>}
     </Container>
   )
 };

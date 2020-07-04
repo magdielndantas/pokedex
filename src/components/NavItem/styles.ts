@@ -12,19 +12,21 @@ export const Container = styled.div`
     transition: 0.25s ease-in-out;
 
     &:hover{
-        background: rgb(243, 248, 254);
+        background: var(--light-blue);
     }
 
     >div h1{
         text-transform: capitalize;
         font-size: 16px;
         font-weight: 700;
-        color: #2F464C;
+        color: var(--dark-blue);
     }
 
     >div p{
         font-size: 12px;
-        color: #c3c3c3;
+        color: var(--gray);
+
+        font-weight: 700;
     }
 
     >img{

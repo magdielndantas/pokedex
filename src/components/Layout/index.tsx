@@ -1,4 +1,5 @@
 import React from 'react'
+import {BrowserRouter} from 'react-router-dom'
 
 import {Grid} from './styles'
 
@@ -7,10 +8,12 @@ import Main from '../Main'
 
 const Layout: React.FC = () =>{
     return(
-        <Grid>
-            <Nav/>
-            <Main/>
-        </Grid>
+        <BrowserRouter>
+            <Grid>
+                <Nav/>
+                <Main/>
+            </Grid>
+        </BrowserRouter>
     )
 };
 

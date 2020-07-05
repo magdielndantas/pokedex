@@ -1,45 +1,47 @@
 import styled from 'styled-components';
+import {Search} from 'styled-icons/remix-line'
+
 
 export const Container = styled.div`
     grid-area: main;
 
-    background-color: var(--bg-secondary);
+    background: var(--bg-primary);
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    >div.SearchBox{
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
 `;
 
-export const Card = styled.div`
-    width: 80%;
-    height: 550px;
+export const SearchBar = styled.input`
+    width: 400px;
+    height: 56px;
 
-    border-radius: 10px;
+    background: rgba(255,255,255, .1);
+    border: 1px solid var(--dark-blue);
 
-    display: flex;
+    color: var(--dark-blue);
+
+    border-radius: 30px;
+    padding-left: 30px;
+    margin: 20px 0;
+
     align-items: center;
-    justify-content: center;
 
-
-    >img{
-        width: 300px;
-        height: 300px;
-    }
-
-    >div h1{
-        text-transform: capitalize;
-        font-size: 68px;
-        font-weight: 700;
+    ::placeholder{
         color: var(--dark-blue);
     }
+`;
 
-    >div p{
-        font-size: 12px;
-        color: var(--gray);
-    }
-
-    >div p span{
-        font-weight: 700;
-    }
-
+export const SearchIcon = styled(Search)`
+    width: 20px;
+    color: var(--dark-blue);
+    position: absolute;
+    right: 30px;
 `;

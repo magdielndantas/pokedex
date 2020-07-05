@@ -2,11 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { Container } from './styles'
 
-export interface Props {
+interface Props {
     name: string,
     id: any,
     image: string,
-    types: string,
+    types: any,
 }
 
 const NavItem: React.FC<Props> = ({

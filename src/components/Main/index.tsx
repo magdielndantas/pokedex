@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { Switch, Route, matchPath } from "react-router-dom"
 import useRouter from "use-react-router"
-import { Container, Card } from './styles'
+
+import { Container, SearchBar, SearchIcon } from './styles'
+import Detail from '../Detail'
 
 const Main: React.FC = () => {
     const [pokemon, setPokemon] = useState([])
     const params = useParams('/pokemon/:id');
-    const id = params.id
+    var id = params.id
 
     useEffect(() => {
         getPokemon(id)
@@ -17,7 +19,8 @@ const Main: React.FC = () => {
         const { pathname } = location
 
         const pattern = `(.*)?${path}`
-        const match = matchPath(pathname, { path: pattern }) || {}
+        const reset = `(.*)?/pokemon/bulbasaur`
+        const match = matchPath(pathname, { path: pattern }) || matchPath(reset, { path: reset})
 
         return match.params
     }
@@ -25,34 +28,47 @@ const Main: React.FC = () => {
     const getPokemon = async (path): Promise<void> => {
         const data: Response = await fetch(`https://pokeapi.co/api/v2/pokemon/${path}`)
         let pokemon: any = await data.json()
-        const pokemonType = pokemon.types.map((t: any) => (
-            <span key={t.id} className={t.type.name}>{t.type.name} </span>
+        const pokemonTypes = pokemon.types.map((t: any) => (
+            <span key={t.type.name} className={t.type.name}>{t.type.name} </span>
         ))
+
+        const pokemonStats = pokemon.stats.map((s: any) => (
+        <>
+            <p>{s.stat.name}: {s.base_stat}</p>
+            <div className="stat" >
+                <div className={`s s${s.base_stat}`}></div>
+                <div className="bar"></div>
+            </div>
+        </>))
 
         const pokemonObject = {
             id: pokemon.id,
             name: pokemon.name,
             image: `${pokemon.sprites.front_default}`,
-            types: pokemonType,
+            types: pokemonTypes,
+            stats: pokemonStats
         }
         setPokemon(pokemonObject)
     }
 
+
     return (
         <Container>
+            <div className="SearchBox">
+                <SearchBar placeholder="Enter a pokemon name or #id" type="text"/>
+                <SearchIcon/>
+            </div>
             <Switch>
                 <Route path='/' exact>
-                    <p>aaaaaaaaaaa </p>
+                    <p>Home</p>
                 </Route>
-                <Route path='/pokemon' exact><p>pppp</p></Route>
                 <Route path='/pokemon/:id'>
-                    <Card>
-                        <img src={pokemon.image} alt={pokemon.name} />
-                        <div>
-                            <h1>{pokemon.name}</h1>
-                            <p>#{pokemon.id} • {pokemon.types}</p>
-                        </div>
-                    </Card>
+                    <Detail name={pokemon.name}
+                            image={pokemon.image}
+                            id={pokemon.id}
+                            types={pokemon.types}
+                            stats={pokemon.stats}
+                            />
                 </Route>
             </Switch>
         </Container>

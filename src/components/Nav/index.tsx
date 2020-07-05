@@ -35,7 +35,6 @@ const Nav: React.FC = () => {
   return (
     <Container>
       <div className="gradient"></div>
-      
       {pokemon.length  > 0 ? pokemon.map((p: any) => (
           <NavItem key={p.id}  name={p.name} id={p.id} image={p.image} types={p.types.map((t: any) => (
             <span key={t.id} className={t.type.name}>{t.type.name} </span>

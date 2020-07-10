@@ -11,3 +11,5 @@ Próximas implementaçãoes:
 - Fazer barra de pesquisa funcionar
 - Listagem com rolagem infinita e auto carregamento
 - Melhorias no visual do detalhamento do pokemon
+
+  

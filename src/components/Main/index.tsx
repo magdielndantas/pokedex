@@ -54,15 +54,18 @@ const Main: React.FC = () => {
 
     return (
         <Container>
-            <div className="SearchBox">
-                <SearchBar placeholder="Enter a pokemon name or #id" type="text"/>
-                <SearchIcon/>
-            </div>
             <Switch>
                 <Route path='/' exact>
-                    <p>Home</p>
+                <div className="SearchBox">
+                    <SearchBar placeholder="Enter a pokemon name or #id" type="text"/>
+                    <SearchIcon/>
+                </div>
                 </Route>
                 <Route path='/pokemon/:id'>
+                    <div className="SearchBox">
+                        <SearchBar placeholder="Enter a pokemon name or #id" type="text"/>
+                        <SearchIcon/>
+                    </div>
                     <Detail name={pokemon.name}
                             image={pokemon.image}
                             id={pokemon.id}

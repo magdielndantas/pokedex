@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  /* width: 240px;
-  height: 310px; */
-  width: 144px;
-  height: 186px;
+export const Container = styled.article`
+  width: 240px;
+  height: 310px;
+  /* width: 144px;
+  height: 186px; */
 
   display: flex;
   flex-direction: column;
@@ -27,21 +27,38 @@ export const Container = styled.div`
 
   > h1 {
     text-transform: capitalize;
-    font-size: 2rem;
+    font-size: 3rem;
 
     margin-top: .6rem;
   }
 `;
 
 export const ImageContainer = styled.header`
-    width: 100%;
-    height: 50%;
+  width: 100%;
+  height: 50%;
 
-    /* padding: 2em 0 1.85em 0; */
-    padding: 0em 0 0.85em 0;
-    border-radius: 4px 4px 0 0;
+  /* padding: 2em 0 1.85em 0; */
+  padding: 0em 0 0.85em 0;
+  border-radius: 4px 4px 0 0;
 
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+`;
+
+export const TypesContainer = styled.div`
+  display: flex;
+
+  margin-top: .6rem;
+
+  > span {
+    padding: 2px 10px;
+    border-radius: 20px;
+
+    color: var(--white);
+  }
+
+  span ~ span {
+    margin-left: 4px;
+  }
 `;

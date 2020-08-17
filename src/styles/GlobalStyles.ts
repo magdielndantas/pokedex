@@ -2,24 +2,29 @@ import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
   :root {
-    --primary: #F2F2F3;
-    --secondary: #15181C;
+    --primary: #f2f2f2;
+    --secondary: #15181c;
 
-    --white: #FEFEFE;
+    --white: #fefefe;
+    --lightGray: #ebeff1;
+    --red: #ef584a;
 
     --bug: #8cd842;     
     --dark: #707070;
-    --ghost: #7b62a3;
     --electric: #ffe55f;
     --fairy: #fdb9e9;
     --fighting: #d56723;
+    --flying: #64b5f6;
     --fire: #ff9d44;
+    --ghost: #7b62a3;
     --grass: #77e856;
     --ground: #ffce49;
+    --ice: #56d1d8;
     --normal: #cedae6;
     --poison: #b97fc9;
     --psychic: #cb63e6;
     --rock: #a78674;
+    --steel: #e7f4ff;
     --water: #64b5f6;
 
     font-size: 60%;
@@ -27,20 +32,23 @@ export default createGlobalStyle`
 
 
 
-  .grass{background-color: var(--grass) !important;}
-  .fire{background-color: var(--fire) !important;}
-  .water{background-color: var(--water) !important;}
   .bug{background-color: var(--bug) !important;}
-  .rock{background-color: var(--rock) !important;}
-  .normal{background-color: var(--normal) !important;}
-  .poison{background-color: var(--poison) !important;}
-  .ghost{background-color: var(--ghost) !important;}
   .dark{background-color: var(--dark) !important;}
   .electric{background-color: var(--electric) !important;}
-  .ground{background-color: var(--ground) !important;}
   .fairy{background-color: var(--fairy) !important;}
-  .psychic{background-color: var(--psychic) !important;}
   .fighting{background-color: var(--fighting) !important;}
+  .fire{background-color: var(--fire) !important;}
+  .flying{background-color: var(--flying) !important;}
+  .ghost{background-color: var(--ghost) !important;}
+  .grass{background-color: var(--grass) !important;}
+  .ground{background-color: var(--ground) !important;}
+  .ice{background-color: var(--ice) !important;}
+  .normal{background-color: var(--normal) !important;}
+  .poison{background-color: var(--poison) !important;}
+  .psychic{background-color: var(--psychic) !important;}
+  .rock{background-color: var(--rock) !important;}
+  .steel{background-color: var(--steel) !important;}
+  .water{background-color: var(--water) !important;}
     
   * {
       margin: 0px;

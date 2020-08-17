@@ -1,61 +1,56 @@
 import React, { useState, useEffect } from 'react';
 
-import Card from '../Card'
+import Card from '../Card';
+import CardSkeleton from '../CardSkeleton';
 import api from '../../services/api';
 
-import { Container } from './styles';
-
-interface ProkemonProps {
-    id: number;
-    name: string;
-    image: string;
-    type: string;
-}
+import { Container, LoadButton, Section } from './styles';
 
 const Main: React.FC = () => {
-    const [pokemons, setPokemons]: any = useState([]);
-    const n = '';
+    const [data, setData]: any = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [endpoint, setEndpoint] = useState("pokemon");
+    const [next, setNext] = useState("");
 
     useEffect(() => {
-        fetchData()
-    }, [n])
+        getPage()
+    }, [endpoint])
 
-    const fetchData = (): void => {
-        for (let i = 1; i <= 100; i++) {
-            getPokemon(i)
+    const getPage = async (): Promise<void> => {
+        const response = await api.get(endpoint);
+
+        setNext(response.data.next);
+        //setData(response.data.results);
+        setData((pokemons: any) => [...pokemons, response.data.results])
+
+        if (response.data.results.length > 0) {
+            setTimeout(() => {
+                api.get('data').then(response => {
+                    setData(response.data);
+                });
+
+                setLoading(false);
+            }, 3000);
         }
     }
-
-    const getPokemon = async (path: number): Promise<void> => {
-        const response = await api.get(`pokemon/${path}`);
-        const pokemon = response.data
-        const pokemonTypes = pokemon.types
-            .map((poke: any) => (
-                <span key={poke.type.name} className={poke.type.name}>{poke.type.name}</span>))
-
-        const pokemonData = {
-            id: pokemon.id,
-            name: pokemon.name,
-            image: `${pokemon.sprites.front_default}`,
-            types: pokemonTypes,
-            backgroundColor: pokemon.types[0].type.name,
-        }
-
-        console.log(pokemon);
-        setPokemons((pokelist: any) => [...pokelist, pokemonData]);
-    }
-
 
     return (
         <Container>
-            {pokemons.length > 0 ? pokemons.map((pk: any) => (
-                <Card
-                    name={pk.name}
-                    image={pk.image}
-                    types={pk.types}
-                    backgroundColor={pk.backgroundColor}
-                />
-            )) : "..."}
+            <Section>
+                {loading && <CardSkeleton cards={5} />}
+                {!loading && (
+                    data.length > 0 ? data.map((pk: any) => (
+                        pk.map((p: any) => (
+                            <Card
+                                key={p.name}
+                                name={p.name}
+                            />
+                        ))
+                    )) : "...")}
+            </Section>
+            <LoadButton>
+                <button type="button" onClick={() => setEndpoint(next)}></button>
+            </LoadButton>
         </Container>
     );
 }

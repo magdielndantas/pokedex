@@ -36,17 +36,14 @@ export const LoadButton = styled.div`
     width: calc(50px - 0px);
     height: calc(50px - 0px);
 
-    border-top: 16px solid var(--white);
-    border-bottom: 16px solid var(--red);
-    border-left: 16px solid var(--red);
-    border-right: 16px solid var(--white);
+    border: 10px solid var(--red);
 
     border-radius: 50%;
 
     cursor: pointer;
 
     &:active {
-      background: var(--secondary);
+      border-left: 10px solid var(--white);
       animation: ${rotate} 5s linear infinite;
     }
   }	

@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.article`
-  width: 240px;
-  height: 310px;
-  /* width: 144px;
-  height: 186px; */
+  /* width: 240px;
+  height: 310px; */
+  width: 150px;
+  height: 200px;
 
   display: flex;
   flex-direction: column;
@@ -27,7 +27,7 @@ export const Container = styled.article`
 
   > h1 {
     text-transform: capitalize;
-    font-size: 3rem;
+    font-size: 2rem;
 
     margin-top: .6rem;
   }

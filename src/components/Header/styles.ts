@@ -2,11 +2,12 @@ import styled from 'styled-components';
 
 export const Container = styled.header`
   width: 100%;
-  height: 300px;
+  height: 200px;
 
   background: var(--white);
 
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
@@ -18,4 +19,18 @@ export const Container = styled.header`
       color: var(--red);
     }
   }
+`;
+
+export const Search = styled.input`
+  width: 350px;
+  height: 50px;
+
+  border-radius: 50px;
+
+  background: var(--primary);
+
+  color: var(--secondary);
+
+  padding-left: 25px;
+  margin-top: 15px;
 `;

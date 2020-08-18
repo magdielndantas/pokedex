@@ -12,7 +12,7 @@ const Layout: React.FC = () => {
             <Header />
             <Main />
             <Footer />
-        </Container>
+        </Container >
     );
 }
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import Card from '../Card';
 import CardSkeleton from '../CardSkeleton';
@@ -12,44 +13,54 @@ const Main: React.FC = () => {
     const [endpoint, setEndpoint] = useState("pokemon");
     const [next, setNext] = useState("");
 
+    const search = useSelector((state: any) => state.searchReducer);
+
     useEffect(() => {
         getPage()
     }, [endpoint])
 
     const getPage = async (): Promise<void> => {
-        const response = await api.get(endpoint);
+        await api.get(endpoint).then(
+            response => {
+                if (response.status === 200) {
+                    setNext(response.data.next);
+                    setData((pokemons: any) => [...pokemons, response.data.results])
 
-        setNext(response.data.next);
-        //setData(response.data.results);
-        setData((pokemons: any) => [...pokemons, response.data.results])
-
-        if (response.data.results.length > 0) {
-            setTimeout(() => {
-                api.get('data').then(response => {
-                    setData(response.data);
-                });
-
-                setLoading(false);
-            }, 3000);
-        }
+                    if (response.data.results.length > 0) {
+                        setTimeout(() => {
+                            setLoading(false);
+                        }, 3000);
+                    }
+                }
+            })
     }
+
 
     return (
         <Container>
             <Section>
-                {loading && <CardSkeleton cards={5} />}
-                {!loading && (
-                    data.length > 0 ? data.map((pk: any) => (
-                        pk.map((p: any) => (
-                            <Card
-                                key={p.name}
-                                name={p.name}
-                            />
-                        ))
-                    )) : "...")}
+                {search.active && <Card name={search.value} />}
+
+                {!search.active && (
+                    loading ? Array.from(Array(12).keys()).map((n) => (
+                        <CardSkeleton />
+                    )) :
+                        data.length > 0 ? data.map((pk: any) => (
+                            pk.map((p: any) => (
+                                <Card
+                                    key={p.name}
+                                    name={p.name}
+                                />
+                            ))
+                        )) : <CardSkeleton />
+                )}
             </Section>
             <LoadButton>
-                <button type="button" onClick={() => setEndpoint(next)}></button>
+                <button
+                    type="button"
+                    onClick={() => setEndpoint(next)}
+                >
+                </button>
             </LoadButton>
         </Container>
     );

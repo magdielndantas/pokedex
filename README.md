@@ -4,19 +4,22 @@
 
 ## Tecnologias
 
-- Reactjs
-- Typescript
-- Axios
+-   Reactjs
+-   Typescript
 
-### Dependencias
+#### Dependencias
 
-- Styled-components
-- Styled-icons
+-   Axios
+-   React-loading-skeleton
+-   React-router-dom
+-   Redux
+-   Styled-components
+-   Styled-icons
 
-### APIs
+#### APIs
 
-- PokeAPI
+-   PokeAPI
 
-## Autor
+## Licença, créditos e etc
 
-## Licença
+Codado por Magdiel Dantas

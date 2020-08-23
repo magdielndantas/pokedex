@@ -1,15 +1,19 @@
 import React from 'react';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import Skeleton from 'react-loading-skeleton';
 
-import { Container } from './styles';
+import { Container, ImageContainer, TypesContainer } from './styles';
 
 const CardSkeleton: React.FC = () => {
     return (
-        <SkeletonTheme color="#1A1C1F" highlightColor="#1F2124" >
-            <Container>
+        <Container>
+            <ImageContainer>
                 <Skeleton height={'100%'} width={'100%'} />
-            </Container>
-        </SkeletonTheme>
+            </ImageContainer>
+            <h1><Skeleton height={'100%'} width={'100%'} /></h1>
+            <TypesContainer>
+                <span><Skeleton height={'100%'} width={'100%'} /></span>
+            </TypesContainer>
+        </Container>
     );
 }
 

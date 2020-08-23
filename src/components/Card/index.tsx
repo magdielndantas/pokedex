@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+import CardSkeleton from '../CardSkeleton';
 import { Container, ImageContainer, TypesContainer } from './styles';
 
 import api from '../../services/api';
@@ -19,12 +20,17 @@ interface Pokemon {
 
 const Card: React.FC<Props> = ({ name }) => {
     const [pokemon, setPokemon]: any = useState({});
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         getPokemon()
     }, [name])
 
     const getPokemon = async (): Promise<void> => {
+        if (!name) {
+            return
+        }
+
         await api.get(`pokemon/${name}`)
             .then(
                 response => {
@@ -48,30 +54,41 @@ const Card: React.FC<Props> = ({ name }) => {
                         }
 
                         setPokemon(pokemonData);
+                        setLoading(false);
                     } else {
                         return
                     }
                 }
 
             ).catch(
-                error => console.log(error.response)
+                error => {
+                    if (error.response.status === 404) {
+                        setLoading(true);
+                    } else {
+                        return
+                    }
+                }
             )
 
     }
 
     return (
-        <Container>
-            <ImageContainer className={pokemon.background}>
-                <img
-                    src={pokemon.imageGif}
-                    alt={pokemon.name}
-                />
-            </ImageContainer>
-            <h1>{pokemon.name}</h1>
-            <TypesContainer>
-                {pokemon.types}
-            </TypesContainer>
-        </Container>
+        <>
+            {loading ? <CardSkeleton /> :
+                <Container>
+                    <ImageContainer className={pokemon.background}>
+                        <img
+                            src={pokemon.imageGif}
+                            alt={pokemon.name}
+                        />
+                    </ImageContainer>
+                    <h1>{pokemon.name}</h1>
+                    <TypesContainer>
+                        {pokemon.types}
+                    </TypesContainer>
+                </Container>
+            }
+        </>
     );
 }
 
